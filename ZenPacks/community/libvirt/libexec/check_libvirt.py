@@ -364,6 +364,8 @@ def get_data_modeler(conn):
 		volume = pool.storageVolLookupByName(volumepath)
 		volinfo = volume.info()
 		[type,capacity,allocation] = volinfo
+		if type >= len(volumetypes):
+		    continue
 		if verbose:
 		    print "Volume: ",volumetypes[type],capacity,allocation,volume.name(),volume.key(),volume.path()
 		voldata['type'] = volumetypes[type]

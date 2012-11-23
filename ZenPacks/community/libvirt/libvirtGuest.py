@@ -84,7 +84,10 @@ class libvirtGuest(DeviceComponent, ManagedEntity):
 	    state = self.lvState
 	if state == None or state == '' or state == -1:
 	    return "Unknown"
-        return statestrmap[int(state)]
+	try:
+	    return statestrmap[int(state)]
+	except ValueError:
+	    return "Unknown"
 
     def dolibvirtSave(self):
 	self.dolibvirtCommand('save')
